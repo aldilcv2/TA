@@ -601,13 +601,18 @@ class GitTab(QWidget):
     def run_cmd(self, cmd):
         self.log(f"$ {' '.join(cmd)}")
         try:
-            res = subprocess.run(cmd, capture_output=True, text=True, check=True)
+            # Set GIT_TERMINAL_PROMPT=0 to prevent git from hanging on credential prompts
+            env = os.environ.copy()
+            env["GIT_TERMINAL_PROMPT"] = "0"
+            
+            res = subprocess.run(cmd, capture_output=True, text=True, check=True, env=env)
             if res.stdout: self.log(res.stdout)
-            if res.stderr: self.log(f"[STDERR] {res.stderr}")
+            if res.stderr: self.log(f"[INFO] {res.stderr}")
             return True, res.stdout
         except subprocess.CalledProcessError as e:
-            self.log(f"Error: {e.stderr}")
-            return False, e.stderr
+            error_msg = e.stderr if e.stderr else e.stdout
+            self.log(f"Error: {error_msg}")
+            return False, error_msg
         except Exception as e:
             self.log(str(e))
             return False, str(e)
@@ -636,16 +641,40 @@ class GitTab(QWidget):
         if not remote:
             QMessageBox.warning(self, "Missing Remote", "Please enter a valid GitHub remote URL.")
             return
+
+        # Check for remote origin
         ok, current_remote = self.run_cmd(["git", "remote", "get-url", "origin"])
-        if not ok or current_remote.strip() != remote:
-             self.run_cmd(["git", "remote", "remove", "origin"])
+        if not ok:
              self.run_cmd(["git", "remote", "add", "origin", remote])
+        elif current_remote.strip() != remote:
+             self.run_cmd(["git", "remote", "set-url", "origin", remote])
+
         self.log("\n--- Starting Automatic Backup & Push ---")
+        
+        # Ensure user config exists (optional but good for new environments)
+        self.run_cmd(["git", "config", "user.name", "aldilcv2"])
+        self.run_cmd(["git", "config", "user.email", "aldilcv2@gmail.com"])
+        
         self.run_cmd(["git", "add", "."])
-        self.run_cmd(["git", "commit", "-m", f"Auto-update via Admin Panel"])
+        
+        # Check if there's anything to commit
+        ok, status = self.run_cmd(["git", "status", "--porcelain"])
+        if ok and not status.strip():
+            self.log("Nothing to commit, working tree clean.")
+        else:
+            self.run_cmd(["git", "commit", "-m", "Auto-update via Admin Panel"])
+
         ok, out = self.run_cmd(["git", "push", "-u", "origin", "main"])
-        if ok: QMessageBox.information(self, "Success", "✅ Code successfully pushed to GitHub!")
-        else: QMessageBox.critical(self, "Error", "❌ Failed to push. Check the log for details.")
+        
+        if ok:
+            QMessageBox.information(self, "Success", "✅ Code successfully pushed to GitHub!")
+        else:
+            hint = ""
+            if "terminal prompts disabled" in out.lower() or "authentication failed" in out.lower():
+                hint = "\n\n💡 Hint: GitHub requires a Personal Access Token (PAT) for HTTPS.\n" \
+                       "Or run 'git config --global credential.helper store' in terminal to save login."
+            
+            QMessageBox.critical(self, "Error", f"❌ Failed to push. Check the log for details.{hint}")
 
 # --- Main Application ---
 class MainWindow(QMainWindow):
