@@ -1,0 +1,27 @@
+[
+    {
+        "id": "top_1",
+        "name": "Choco Chips",
+        "price": 5000
+    },
+    {
+        "id": "top_2",
+        "name": "Almond Slice",
+        "price": 6000
+    },
+    {
+        "id": "top_3",
+        "name": "Cheese Grated",
+        "price": 5000
+    },
+    {
+        "id": "top_6937f88add270",
+        "name": "Sprinkles",
+        "price": 2000
+    },
+    {
+        "id": "top_1768231651",
+        "name": "Kopi",
+        "price": 2000
+    }
+]

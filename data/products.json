@@ -1,0 +1,64 @@
+[
+    {
+        "id": "prod_1",
+        "name": "Classic Choco",
+        "category": "Best Seller",
+        "price": 35000,
+        "stock": 20,
+        "max_order": 10,
+        "description": "Original soft cookie with premium belgian dark chocolate chunks.",
+        "image": "assets/products/cookie1.png",
+        "toppings": [
+            "top_2",
+            "top_3"
+        ]
+    },
+    {
+        "id": "prod_2",
+        "name": "Red Velvet",
+        "category": "Special",
+        "price": 38000,
+        "stock": 15,
+        "max_order": 5,
+        "description": "Red velvet dough with white chocolate filling.",
+        "image": "assets/products/cookie2.png"
+    },
+    {
+        "id": "prod_3",
+        "name": "Matcha Toi",
+        "category": "Premium",
+        "price": 10000,
+        "stock": 18,
+        "max_order": 8,
+        "description": "Premium matcha cookie with white chocolate chunks.",
+        "image": "assets/products/cookie3.png",
+        "toppings": [
+            "top_1768231651"
+        ]
+    },
+    {
+        "id": "prod_6937f843e4444",
+        "name": "Macha Hijau",
+        "category": "",
+        "price": 15000,
+        "stock": 100,
+        "max_order": 10,
+        "description": "",
+        "image": "assets/products/WhatsApp Image 2025-12-07 at 01.24.00.jpeg",
+        "toppings": []
+    },
+    {
+        "id": "1768230359",
+        "name": "Macha Hitam",
+        "category": "Preminum",
+        "price": 20000,
+        "stock": 10,
+        "max_order": 10,
+        "description": "",
+        "image": "assets/products/WhatsApp Image 2025-12-07 at 01.24.00.jpeg",
+        "toppings": [
+            "top_1",
+            "top_2"
+        ]
+    }
+]

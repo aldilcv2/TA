@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "title": "Softness in Every Bite",
+    "subtitle": "Premium homemade soft cookies with belgian chocolate.",
+    "buttonText": "Order Now",
+    "backgroundImage": ""
+  },
+  "about": {
+    "enabled": true,
+    "title": "About BiteBabe",
+    "description": "We craft premium soft cookies with love and the finest ingredients. Each cookie is handmade to ensure the perfect texture and taste.",
+    "image": ""
+  },
+  "features": [
+    {
+      "icon": "🍪",
+      "title": "Handmade Daily",
+      "description": "Fresh cookies made every day"
+    },
+    {
+      "icon": "🇧🇪",
+      "title": "Belgian Chocolate",
+      "description": "Premium imported chocolate"
+    },
+    {
+      "icon": "📦",
+      "title": "Fast Delivery",
+      "description": "Same day delivery available"
+    }
+  ],
+  "seo": {
+    "title": "BiteBabe Soft Cookies",
+    "description": "Softness in every bite. Premium soft cookies homemade.",
+    "keywords": "soft cookies, premium cookies, belgian chocolate, homemade cookies"
+  },
+  "footer": {
+    "copyright": "2024 BiteBabe Soft Cookies. All rights reserved."
+  }
+}
