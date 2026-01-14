@@ -60,5 +60,19 @@
             "top_1",
             "top_2"
         ]
+    },
+    {
+        "id": "1768396933",
+        "name": "Coklat Bima",
+        "category": "",
+        "price": 10000,
+        "stock": 0,
+        "max_order": 10,
+        "description": "",
+        "image": "assets/products/logo.png",
+        "toppings": [
+            "top_1",
+            "top_3"
+        ]
     }
 ]
